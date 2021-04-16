@@ -1,0 +1,7 @@
+{
+  "name": "PyyR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
