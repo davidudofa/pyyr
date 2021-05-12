@@ -1,0 +1,86 @@
+ion-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ion-color-step-600, #b7e5fa);
+    --background: url(../../assets/img/pyyr_background.PNG);
+    --background-position: center;
+    --background-repeat: no-repeat;
+    --background-size: cover;
+    --ion-text-color: #fff;
+    text-align: center;
+    /*--ion-background-color: #1d2026;
+    --ion-text-color: #fff;
+    --ion-color-primary: #57195e; //#8c52ff;
+    --background: url(../../assets/img/pyyr_background.PNG) no-repeat 100% 100%;
+    --background-size: contain;
+    font-size: 50px;*/
+    .ion-content {
+        width: 50%;
+        margin: auto;
+        --ion-background-color: #1d2026;
+        --ion-text-color: #fff;
+        --ion-color-primary: #57195e; //#8c52ff;
+        --background: url(../../assets/img/pyyr_background.PNG) no-repeat 100% 100%;
+        --background-size: contain;
+    }
+    ion-label {
+        color: #b7e5fa;
+        font-size: smaller;
+    }
+    .content {
+        text-align: center;
+    }
+    .unlink {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--ion-color-step-600, #60646b);
+    }
+    #rounded {
+        width: 100%;
+        height: 100px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .btn-grad {
+        background-image: linear-gradient(to right, #57195e 0%, #8c52ff 71%, #57195e 100%)
+    }
+    .btn-grad {
+        margin: auto;
+        margin-top: 10px;
+        padding: 15px 45px;
+        width: 70%;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: #def3fd;
+        box-shadow: 0 0 20px #1d2026;
+        display: block;
+    }
+    .btn-grad:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+    .center-logo {
+        width: 30%;
+        margin: auto;
+        margin-top: 10%;
+        margin-bottom: 20%;
+    }
+    .error {
+        color: red;
+        margin-top: 0px;
+        font-size: 10px;
+    }
+    @media only screen and (max-width: 600px) {
+        .ion-content {
+            width: 100%;
+            margin: auto;
+        }
+    }
+}

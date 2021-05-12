@@ -1,0 +1,44 @@
+<ion-content>
+    <div class="ion-content">
+        <div class="center-logo">
+            <img src="../../assets/img/pyyr_logo.png">
+        </div>
+        <div class="content">
+            <form id="authdetails" *ngIf="registerform" (ngSubmit)="regDetails()" novalidate>
+                <ion-item>
+                    <ion-label position="floating">Full Name</ion-label>
+                    <ion-input type="text" name="fullname" [(ngModel)]="reguser.fullname" required autocomplete="off"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" name="usermail" [(ngModel)]="reguser.usermail" required autocomplete="off"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input type="password" name="passcode" [(ngModel)]="reguser.passcode" required autocomplete="off"></ion-input>
+                </ion-item>
+                <button class="btn-grad" type="submit" expand="block">Next</button>
+                <p class="unlink">Already registered? <a (click)="newLogin();">login</a></p>
+            </form>
+            <form id="bankdetails" *ngIf="!registerform" (ngSubmit)="regBank()" novalidate>
+                <ion-item>
+                    <ion-label position="floating">BVN</ion-label>
+                    <ion-input type="number" name="userbvn" [(ngModel)]="reguser.userbvn" required autocomplete="off"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Account Number</ion-label>
+                    <ion-input type="number" name="useracct" [(ngModel)]="reguser.useracct" required autocomplete="off"></ion-input>
+                </ion-item>
+                <button class="btn-grad" type="submit">Submit</button>
+                <div style="text-align: center;">
+                    <ion-button style="text-align: center;" fill="clear" (click)="registerform=true;">
+                        <ion-icon slot="start" name="arrow-back"></ion-icon> <small> back</small>
+                    </ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</ion-content>

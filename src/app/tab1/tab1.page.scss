@@ -1,0 +1,70 @@
+ion-content {
+    ion-item {
+        color: #4d5057;
+        font-weight: bold;
+    }
+    .laptopscreen {
+        display: block;
+        background-color: #fdfdff;
+        height: 100vh;
+        text-align: center;
+    }
+    .mediascreen {
+        display: none;
+    }
+    .ion-card {
+        --ion-background-color: #1d2026;
+        --ion-text-color: #fff;
+        --ion-color-primary: #57195e; //#8c52ff;
+        --background: url(../../assets/img/pyyr_background.PNG);
+        --background-position: center;
+        --background-repeat: no-repeat;
+        --background-size: cover;
+        text-align: center;
+        width: 97%;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .btn-grad {
+        background-image: linear-gradient(to right, #57195e 0%, #8c52ff 71%, #57195e 100%)
+    }
+    .btn-grad {
+        margin: auto;
+        margin-top: 10px;
+        padding: 10px 10px;
+        width: auto;
+        text-align: center;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: #def3fd;
+        box-shadow: 0 0 20px #1d2026;
+        display: block;
+    }
+    .btn-grad:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+    .error {
+        color: red;
+        text-align: end;
+    }
+    .success {
+        color: green;
+        text-align: end;
+    }
+    .ion-text-wrap {
+        line-height: 12px;
+        color: #4d5057;
+    }
+    @media only screen and (max-width: 600px) {
+        .laptopscreen {
+            display: none;
+        }
+        .mediascreen {
+            display: block;
+        }
+    }
+}

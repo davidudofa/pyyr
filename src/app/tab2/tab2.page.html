@@ -1,17 +1,130 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-title slot="start" style="text-transform: none; color:white;"><small>Welcome {{logged_user.lastName}} </small></ion-title>
+        <ion-buttons style="text-align: right; display: block;" slot="end">
+
+            <ion-avatar>
+                <img src="../../assets/img/pyyr_logo.png">
+            </ion-avatar>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+    <ion-row>
+        <ion-col size="4" class="laptopscreen">
+            <div style="text-align: center;">
+                <ion-avatar style="margin:15px auto;">
+                    <img src="../../assets/img/pyyr_background2.PNG">
+                </ion-avatar>
+                <ion-title [innerHtml]="logged_user.fullname | uppercase"></ion-title>
+            </div>
+            <div style="text-align: center;">
+                <ion-chip color="tertiary">
+                    <ion-icon name="qr-code-outline" color="primary"></ion-icon>
+                    <ion-label color="dark">wallet pay</ion-label>
+                </ion-chip>
+                <ion-chip color="danger">
+                    <ion-icon name="cash-outline" color="tertiary"></ion-icon>
+                    <ion-label color="dark">Other Bills</ion-label>
+                </ion-chip>
+            </div>
+            <ion-list>
+                <ion-list-header>
+                </ion-list-header>
+                <ion-item button (click)="openLink('/home')">
+                    <ion-icon slot="end" name="grid-outline" color="medium"></ion-icon>
+                    <ion-label color="medium">Dashboard</ion-label>
+                </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+                <ion-item button (click)="openLink('/home/payments')">
+                    <ion-icon slot="end" name="cash-outline" color="medium"></ion-icon>
+                    <ion-label color="medium">Payments</ion-label>
+                </ion-item>
+
+                <ion-item button (click)="openLink('/home/account')">
+                    <ion-icon slot="end" name="person-outline" color="medium"></ion-icon>
+                    <ion-label color="medium">Account</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-col>
+        <ion-col>
+            <ion-card style="width: 100%; margin: auto;">
+                <ion-card-header>
+                    <ion-card-title><span [innerHTML]="logged_user.walletid"></span> - N<span [innerHtml]="logged_user.walletbalance"></span></ion-card-title>
+
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-segment (ionChange)="segmentChanged($event)" value="send">
+                        <ion-segment-button value="send">
+                            <ion-label>Send
+                                <ion-icon color="danger" name="caret-up"></ion-icon>
+                            </ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="receive">
+                            <ion-label>
+                                <ion-icon color="success" name="caret-down"></ion-icon> Receive</ion-label>
+                        </ion-segment-button>
+                    </ion-segment>
+                    <form id="sendform" *ngIf="sendform" style="margin-top: 5%">
+                        <ion-item>
+                            <ion-label position="floating">Send To</ion-label>
+                            <ion-input type="text" name="sendto" [(ngModel)]="txndetails.from" (keyup)="searchWallet($event, txndetails.from)" required autocomplete="off"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Amount</ion-label>
+                            <ion-input type="number" name="amount" [(ngModel)]="txndetails.amount" required autocomplete="off"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Narration</ion-label>
+                            <ion-input type="text" name="narration" [(ngModel)]="txndetails.narration" autocomplete="off"></ion-input>
+                        </ion-item>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+            <!-- Fallback for iOS PWA -->
+            <input #fileinput type="file" accept="image/*;capture=camera" hidden (change)="handleFile($event.target.files)">
+
+            <!-- Trigger the file input -->
+            <ion-button expand="full" (click)="captureImage()">
+                <ion-icon slot="start" name="camera"></ion-icon>
+                Capture Image
+            </ion-button>
+
+            <ion-button expand="full" (click)="startScan()">
+                <ion-icon slot="start" name="qr-scanner"></ion-icon>
+                Start scan
+            </ion-button>
+
+            <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
+                <ion-icon slot="start" name="refresh"></ion-icon>
+                Reset
+            </ion-button>
+
+            <!-- Shows our camera stream -->
+            <video #video [hidden]="!scanActive" width="100%"></video>
+
+            <!-- Used to render the camera stream images -->
+            <canvas #canvas hidden></canvas>
+
+            <!-- Stop our scanner preview if active -->
+            <ion-button expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
+                <ion-icon slot="start" name="close"></ion-icon>
+                Stop scan
+            </ion-button>
+
+            <ion-card *ngIf="scanResult">
+                <ion-card-header>
+                    <ion-card-title>QR Code</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    {{ scanResult }}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+
 </ion-content>

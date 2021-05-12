@@ -1,0 +1,42 @@
+<ion-content>
+    <div class="ion-content">
+        <div class="center-logo">
+            <img src="../../assets/img/pyyr_logo.png">
+        </div>
+        <div class="content">
+            <div *ngIf="!newlogin">
+                <h6>Welcome <b [innerHtml]="registered_user.lastName | uppercase"></b></h6><br/>
+                <form (ngSubmit)="loginUser()" novalidate>
+                    <ion-item>
+                        <ion-input autocorrect="off" clearInput="true" clearOnEdit="true" type="password" name="oldpasscode" [(ngModel)]="login_data.passcode" inputmode="password" placeholder="Enter your passcode" required="true"></ion-input>
+                        <ion-icon name="person" slot="end" size="small" align-self-center></ion-icon>
+                    </ion-item>
+                    <button class="btn-grad" type="submit">Submit</button>
+                    <p class="unlink">not <b [innerHTML]="registered_user.lastName"></b>? <a (click)="unlinkDevice()">unlink device</a></p>
+
+                </form>
+            </div>
+            <div *ngIf="newlogin">
+                <h6>Login to PyyR wallet</h6>
+                <form (ngSubmit)="newloginUser()" novalidate>
+                    <ion-item>
+                        <ion-input autocorrect="off" clearInput="true" clearOnEdit="true" inputmode="text" name="walletid" [(ngModel)]="newlogin_data.walletid" placeholder="Enter your wallet Id" required="true"></ion-input>
+                        <ion-icon name="wallet-outline" color="secondary" slot="end" size="small" align-self-center></ion-icon>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input autocorrect="off" type="password" clearInput="true" clearOnEdit="true" name="passcode" [(ngModel)]="newlogin_data.passcode" inputmode="password" placeholder="Enter your passcode" required="true"></ion-input>
+                        <ion-icon name="lock-closed-outline" color="secondary" slot="end" size="small" align-self-center></ion-icon>
+                    </ion-item>
+                    <button class="btn-grad" type="submit">Submit</button>
+                    <p class="unlink">new to <b>PyyR</b>? <a (click)="registerUser()"> register here</a></p>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</ion-content>

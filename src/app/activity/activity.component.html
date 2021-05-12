@@ -1,0 +1,40 @@
+<ion-toolbar>
+    <ion-title>Transaction Details</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+</ion-toolbar>
+<ion-content>
+    <ion-list>
+        <div *ngFor="let item of groupArr">
+            <ion-list-header lines="inset">
+                <ion-label><b [innerHtml]="item.date"></b></ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let recent of item.groupItem; let index = index">
+                <div slot="start">
+                    <ion-icon size="large" *ngIf="recent.desc=='wallet topup'" color="primary" name="card"></ion-icon>
+                    <ion-icon size="large" *ngIf="recent.desc!='wallet topup'" color="primary" name="wallet"></ion-icon>&nbsp; &nbsp;
+                </div>
+                <ion-label class="ion-text-wrap">
+                    <h2>
+
+                        <span [innerHtml]="recent.desc"></span>&nbsp;
+                    </h2>
+                    <h3>
+                        <ion-icon name="caret-up" *ngIf="recent.credit=='0'" color='danger'></ion-icon>
+                        <ion-icon name="caret-down" *ngIf="recent.debit=='0'" color='success'></ion-icon>&nbsp;
+
+                        <span *ngIf="recent.debit=='0'" [innerHtml]="recent.to"></span>
+                        <span *ngIf="recent.credit=='0'" [innerHtml]="recent.from"></span>
+                    </h3>
+                    <p><small><i [innerHtml]='recent.ref'></i></small></p>
+                    <!--h2><span [innerHtml]="recent.ref"></span></h2-->
+                </ion-label>
+                <b *ngIf="recent.credit=='0'" class="error">&#8358; <span [innerHTML]="recent.amount"></span></b>
+                <b *ngIf="recent.debit=='0'" class="success">&#8358; <span [innerHTML]="recent.amount"></span></b>
+            </ion-item>
+
+        </div>
+
+    </ion-list>
+</ion-content>
